@@ -1,0 +1,17 @@
+create database studentdb
+
+show DATABASES;
+
+use studentdb;
+
+drop DATABASE studentdb;
+
+create table student_detail(
+    nmaeofstudent varchar(200)
+);
+
+ insert into student_detail VALUES ('gaurav singh'),
+  ('abhay singh');
+
+  select * from student_detail;
+  TRUNCATE table student_detail
