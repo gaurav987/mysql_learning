@@ -15,3 +15,40 @@ create table student_detail(
 
   select * from student_detail;
   TRUNCATE table student_detail
+
+-- Active: 1689660601420@@127.0.0.1@3306
+CREATE DATABASE testdb;
+
+use testdb;
+
+drop table studentinfo;
+
+create table studentinfo(
+id int,
+name    varchar(100),
+address varchar(100),
+city    varchar(100),
+constraint pk primary key (id)
+);
+
+insert into studentinfo  values (1,'Rahul','sindhi mill colony','Deoria');
+insert into studentinfo  values (2,'Mohan','sindhi mill colony','Deoria');
+
+select * from studentinfo;
+
+create table customer (
+  custid int,
+ name varchar(50),
+ age int,
+ constraint pk primary key (custid)   
+
+
+);
+
+create table orders(
+  orderid int,
+  ordernum int,
+  custid int,
+  constraint fk foreign key (custid) references customer(custid)
+
+);
