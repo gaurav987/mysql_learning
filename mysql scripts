@@ -27,3 +27,12 @@ select
       count(*)
       from orders_data
       group by state,country
+
+ --group_concat function
+ select 
+       country,
+       GROUP_CONCAT(distinct(state)) as state_data,
+       count(*)
+from orders_data
+group by country
+order by count(*) asc;
