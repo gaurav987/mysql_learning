@@ -1,0 +1,69 @@
+CREATE DATABASE testdb;
+
+use testdb;
+
+
+
+# Examples for join
+create table orders
+(
+    order_id int,
+    cust_id int,
+    order_dat date, 
+    shipper_id int
+);
+
+create table customers
+(
+    cust_id int,
+    cust_name varchar(50),
+    country varchar(50)
+);
+
+create table shippers
+(
+    ship_id int,
+    shipper_name varchar(50)
+);
+
+insert into orders values(10308, 2, '2022-09-15', 3);
+insert into orders values(10309, 30, '2022-09-16', 1);
+insert into orders values(10310, 41, '2022-09-19', 2);
+
+insert into customers values(1, 'Neel', 'India');
+insert into customers values(2, 'Nitin', 'USA');
+insert into customers values(3, 'Mukesh', 'UK');
+
+insert into shippers values(3,'abc');
+insert into shippers values(1,'xyz');
+
+select * from orders;
+select * from customers;
+select * from shippers;
+
+--join example
+
+select 
+     a.*,
+     b.*
+
+ from orders as a
+     inner join customers as b
+     on a.cust_id =b.cust_id;
+
+--leftjoin
+select 
+     a.*,
+     b.*
+
+ from orders as a
+     left join customers as b
+     on a.cust_id =b.cust_id;
+
+select 
+     a.*,
+     b.*
+
+ from orders as a
+     right join customers as b
+     on a.cust_id =b.cust_id;
