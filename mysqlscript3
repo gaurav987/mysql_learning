@@ -67,3 +67,5 @@ select
  from orders as a
      right join customers as b
      on a.cust_id =b.cust_id;
+
+
