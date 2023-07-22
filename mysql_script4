@@ -1,0 +1,43 @@
+use testdb;
+
+# Window Functions
+create table shop_sales_data
+(
+sales_date date,
+shop_id varchar(5),
+sales_amount int
+);
+
+insert into shop_sales_data values('2022-02-14','S1',200);
+insert into shop_sales_data values('2022-02-15','S1',300);
+insert into shop_sales_data values('2022-02-14','S2',600);
+insert into shop_sales_data values('2022-02-15','S3',500);
+insert into shop_sales_data values('2022-02-18','S1',400);
+insert into shop_sales_data values('2022-02-17','S2',250);
+insert into shop_sales_data values('2022-02-20','S3',300);
+
+select * from shop_sales_data;
+
+--
+
+select sum(sales_amount),shop_id from shop_sales_data group by shop_id;
+
+select *,sum(sales_amount) over(PARTITION BY shop_id ) as total_sales
+from shop_sales_data ;
+
+select *,
+        sum(sales_amount)  over() as total_sales
+        from shop_sales_data;
+
+select 
+      *,
+      sum(sales_amount) over(partition by shop_id order by sales_date) as total_sales
+    from shop_sales_data;
+
+select 
+      *,
+      sum(sales_amount) over(partition by shop_id order by sales_date desc) as total_sales,
+         avg(sales_amount) over(partition by shop_id order by sales_date desc) as average_sales,
+            max(sales_amount) over(partition by shop_id order by sales_date desc) as max_sales,
+               min(sales_amount) over(partition by shop_id order by sales_date desc) as min_sales
+ from shop_sales_data;
