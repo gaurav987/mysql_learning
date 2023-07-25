@@ -30,3 +30,11 @@ with dep_wise_salary as (select dept_id,sum(salary) as total_salary
 select b.dept_name,a.total_salary  from dep_wise_salary as a
 join department b on a.dept_id=b.dept_id
 ;
+
+with dep_wise_salary as (select dept_id,sum(salary) as total_salary 
+                    from amazon_employees group by dept_id)  ,
+    dep_max_salary as (select dept_id, max(salary) as total_salary 
+                    from amazon_employees group by dept_id)   
+
+select * from dep_max_salary 
+;
